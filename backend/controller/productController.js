@@ -25,7 +25,6 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
         .search()
         .filter()
         .pagination(resPerPage)
-    // const products = await Product.find();
     const products = await apiFeatures.query;
 
     res.status(200).json({
