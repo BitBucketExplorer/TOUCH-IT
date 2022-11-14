@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser')
 app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
-
+app.use(cookieParser());
 
 
 //Api versioning 
@@ -24,5 +24,4 @@ app.use(ver1, user);
 
 //Middleware to handle error
 app.use(errorMiddleware);
-app.use(cookieParser);
 module.exports = app;
