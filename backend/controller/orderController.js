@@ -1,7 +1,8 @@
 const Order = require('../models/order');
 const Product = require('../models/product');
-const ErrorHandler = require('../middlewares/errors');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+const ErrorHandler = require('../utils/errorHandler');
+
 /**
  * Create new order  => /api/v1/order/new
  */
@@ -85,10 +86,9 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     if (!order) {
         return next(new ErrorHandler(`No order found with this Id: ${req.params.id}`, 404))
     };
-    return next(new ErrorHandler("You have already delivered this order", 404));
-    // if (order.orderStatus === 'Dilivered') {
-    //     return next(new ErrorHandler("You have already delivered this order", 404));
-    // }
+    if (order.orderStatus === 'Dilivered') {
+        return next(new ErrorHandler("You have already delivered this order"));
+    }
 
     order.orderItems.forEach(async item => {
         await updateStock(item.product, item.quantity)
