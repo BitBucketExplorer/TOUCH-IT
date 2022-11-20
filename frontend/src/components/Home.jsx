@@ -1,8 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import MetaData from './layout/MetaData'
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import MetaData from './layout/MetaData';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../actions/productActions'
 
 const Home = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [dispatch])
     return (
         <div className='container container-fluid'>
             <MetaData title={'Buy Good Products Online '} />
