@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 import {
     All_PRODUCT_REQUEST,
     All_PRODUCT_SUCCESS,
@@ -10,7 +11,6 @@ import {
 export const getProducts = () => async (dispatch) => {
     try {
         dispatch({ type: All_PRODUCT_REQUEST });
-
         const { data } = await axios.get('api/v1/products');
         dispatch({
             type: All_PRODUCT_SUCCESS,
