@@ -5,18 +5,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, clearErrors } from '../actions/productActions'
 import Product from './product/Product';
 import Loader from './layout/Loader';
-
-const Home = () => {
+const Home = ({ match }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch();
     const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products);
+
+    /**
+     * Search Functionality is pending , I will Complete it after complete this tutorial
+     */
+    const keyword = match ? match.params.keyword : '';
     useEffect(() => {
-        dispatch(getProducts(currentPage))
+        dispatch(getProducts(keyword, currentPage))
 
         if (error) {
             dispatch(clearErrors);
         }
-    }, [dispatch, error, currentPage]);
+    }, [dispatch, error, keyword, currentPage]);
 
     function setCurrentPageNo(pageNumber) {
         setCurrentPage(pageNumber)
