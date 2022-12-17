@@ -6,10 +6,14 @@ import { register, clearErrors } from '../../actions/userAction';
 import history from 'history/browser';
 
 const Register = () => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
     const { name, email, password } = user;
     const [avatar, setAvatar] = useState('');
-    const [avatarPreview, setAvatarPreview] = useState('/images/default_avatar.jpg');
+    const [avatarPreview, setAvatarPreview] = useState('/images/noAvatar.png');
 
     const dispatch = useDispatch();
 
@@ -28,7 +32,7 @@ const Register = () => {
 
     const onChangeHandler = (e) => {
         if (e.target.name === 'avatar') {
-            const reader = FileReader();
+            const reader = new FileReader();
             reader.onload = () => {
                 if (reader.readyState === 2) {
                     setAvatarPreview(reader.result);
@@ -114,7 +118,7 @@ const Register = () => {
                                         name='avatar'
                                         className='custom-file-input'
                                         id='customFile'
-                                        accept='images/*'
+                                        accept='iamges/*'
                                         onChange={onChangeHandler}
                                     />
                                     <label className='custom-file-label' for='customFile'>

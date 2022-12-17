@@ -1,4 +1,3 @@
-import { Action } from '@remix-run/router'
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
