@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link, Route, Routes, Router } from 'react-router-dom'
 import '../../App.css'
+import Search from './Search'
 const Header = () => {
     return (
         <>
@@ -11,23 +13,15 @@ const Header = () => {
                 </div>
 
                 <div className="col-12 col-md-6 mt-2 mt-md-0">
-                    <div className="input-group">
-                        <input
-                            type="text"
-                            id="search_field"
-                            className="form-control"
-                            placeholder="Enter Product Name ..."
-                        />
-                        <div className="input-group-append">
-                            <button id="search_btn" className="btn">
-                                <i className="fa fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <Search render={(history) => <Search history={history} />} />
+                    {/* <Routes>
+                        <Route render={(history) => <Search history={history} />} />
+                    </Routes> */}
+                    {/* <Router render={(history) => <Search history={history} />} /> */}
                 </div>
 
                 <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-                    <button className="btn" id="login_btn">Login</button>
+                    <Link to="/login" className="btn ml-5" id="login_btn">Login</Link>
 
                     <span id="cart" className="ml-3">Cart</span>
                     <span className="ml-1" id="cart_count">2</span>

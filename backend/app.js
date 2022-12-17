@@ -4,14 +4,17 @@ const errorMiddleware = require('./middlewares/errors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser')
+const bodyparser = require('body-parser');
+const fileupload = require('express-fileupload')
 
 
 // Middleware
 app.use(express.json())
 app.use(helmet())
 app.use(morgan("common"))
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+app.use(fileupload());
 
 //Api versioning 
 const ver1 = '/api/v1'
