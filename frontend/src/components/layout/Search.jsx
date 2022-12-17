@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
+import history from 'history/browser'
+import { Link } from 'react-router-dom';
 
-const Search = ({ history }) => {
+const Search = () => {
 
     const [keyword, setKeyWord] = useState('');
 
     const searchHandler = (e) => {
         e.preventDefault();
         if (keyword) {
-            history.push(`/search/${keyword}`);
+            history.push(`/search/${keyword}`, state => state.products);
         } else {
             history.push('/');
         }

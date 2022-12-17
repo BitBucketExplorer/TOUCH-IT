@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import MetaData from './layout/MetaData';
+import Loader from './layout/Loader';
 import Pagination from 'react-js-pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, clearErrors } from '../actions/productActions'
 import Product from './product/Product';
-import Loader from './layout/Loader';
-const Home = ({ match }) => {
+import { useParams } from 'react-router'
+const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch();
     const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products);
@@ -13,14 +14,17 @@ const Home = ({ match }) => {
     /**
      * Search Functionality is pending , I will Complete it after complete this tutorial
      */
-    const keyword = match ? match.params.keyword : '';
+    const match = '';
+    const keyword = useParams().keyword;
+
+    // const keyword = match ? match.params.keyword : '';
     useEffect(() => {
         dispatch(getProducts(keyword, currentPage))
 
         if (error) {
             dispatch(clearErrors);
         }
-    }, [dispatch, error, keyword, currentPage]);
+    }, [dispatch, error, currentPage, keyword]);
 
     function setCurrentPageNo(pageNumber) {
         setCurrentPage(pageNumber)
