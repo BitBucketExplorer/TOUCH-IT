@@ -25,11 +25,11 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
             url: result.secure_url
         }
     });
-    sendTokenToken(user, 200, res);
+    sendToken(user, 200, res);
 });
 
 /**
- * Login user =>/api/v1/login
+ * Login user =>/api/v1/login 
  */
 
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {

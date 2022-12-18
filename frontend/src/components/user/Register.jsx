@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData';
 import { register, clearErrors } from '../../actions/userAction';
 import history from 'history/browser';
+import { useLocation } from 'react-router-dom';
 
 const Register = () => {
     const [user, setUser] = useState({
@@ -17,7 +18,19 @@ const Register = () => {
 
     const dispatch = useDispatch();
 
+    const location = useLocation();
     const { loading, isAuthenticated, error } = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            history.push('/', state => state.auth);
+        }
+
+        if (error) {
+            //code for alert
+            dispatch(clearErrors());
+        }
+    }, [dispatch, isAuthenticated, error, history]);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -27,7 +40,14 @@ const Register = () => {
         formData.set('password', password);
         formData.set('avatar', avatar);
 
-        dispatch(register(formData));
+        const userData = {
+            name: name,
+            email: email,
+            password: password,
+            avatar: avatar,
+        }
+
+        dispatch(register(userData));
     }
 
     const onChangeHandler = (e) => {
@@ -45,16 +65,7 @@ const Register = () => {
         }
     }
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            history.push('/login');
-        }
 
-        if (error) {
-            //code for alert
-            dispatch(clearErrors());
-        }
-    }, [dispatch, isAuthenticated, error, history]);
 
     return (
         <Fragment>
@@ -121,7 +132,7 @@ const Register = () => {
                                         accept='iamges/*'
                                         onChange={onChangeHandler}
                                     />
-                                    <label className='custom-file-label' for='customFile'>
+                                    <label className='custom-file-label' htmlFor='customFile'>
                                         Choose Avatar
                                     </label>
                                 </div>

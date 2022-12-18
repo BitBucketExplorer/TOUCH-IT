@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import history from 'history/browser'
 import { Link } from 'react-router-dom';
 
-const Search = () => {
+const Search = ({ history }) => {
 
     const [keyword, setKeyWord] = useState('');
 
