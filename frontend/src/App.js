@@ -5,10 +5,12 @@ import Header from './components/layout/Header';
 import ProductDetails from './components/product/ProductDetails';
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/route/ProtectedRoute';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import { loadUser } from './actions/userAction';
 import store from './store'
+import Profile from './components/user/Profile';
 function App() {
 
   useEffect(() => {
@@ -32,6 +34,7 @@ function App() {
           <Route path="/register">
             <Route index element={<Register />}></Route>
           </Route>
+          <ProtectedRoute path="/me" component={Profile} exact />
         </Routes>
         <Footer />
 
