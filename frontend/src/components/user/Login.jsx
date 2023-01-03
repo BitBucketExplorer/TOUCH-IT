@@ -22,7 +22,7 @@ const Login = () => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            history.push('/', state => state.products);
+            history.push('/', state => state.auth);
         }
 
         if (error) {
