@@ -11,7 +11,7 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
     req.body.user = req.user.id;
     const product = await Product.create(req.body);
     res.status(201).json({
-        sucess: true,
+        success: true,
         product
     })
 });
@@ -30,7 +30,7 @@ exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     // setTimeout(()=>{
         res.status(200).json({
-            sucess: true,
+            success: true,
             productsCount,
             resPerPage,
             products
@@ -49,7 +49,7 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('Product not found', 404))
     }
     res.status(200).json({
-        sucess: true,
+        success: true,
         product
     });
 });
@@ -68,13 +68,13 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         useFindAndModify: false
     });
     res.status(200).json({
-        sucess: true,
+        success: true,
         product
     });
 });
 
 /**
- * Detele product => /api/v1/admin/product/:id
+ * Delete product => /api/v1/admin/product/:id
  */
 
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
@@ -86,7 +86,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     product.remove();
 
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: `Product- ${productId} is deleted`
     })
 });

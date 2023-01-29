@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: [true, 'Plase enter password'],
+        required: [true, 'Please enter password'],
         minLength: [6, 'Your password must be longer than 6 character'],
         select: false
     },
@@ -68,7 +68,7 @@ userSchema.methods.getJwtToken = function () {
     })
 }
 /**
- * Generate Pasword reset token
+ * Generate Password reset token 
  */
 userSchema.methods.getResetPasswordToken = function () {
     //Generate token

@@ -18,7 +18,7 @@ const Profile = () => {
                             <figure className='avatar avatar-profile'>
                                 <img className="rounded-circle img-fluid" src={user.avatar.url} alt={user.name} />
                             </figure>
-                            <Link to="/update/me" id="edit_profile" className="btn btn-primary btn-block my-5">
+                            <Link to="/me/update" id="edit_profile" className="btn btn-primary btn-block my-5">
                                 Edit Profile
                             </Link>
                         </div>

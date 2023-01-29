@@ -8,7 +8,8 @@ const Search = ({ history }) => {
     const searchHandler = (e) => {
         e.preventDefault();
         if (keyword) {
-            history.push(`/search/${keyword}`, state => state.products);
+            history.pushState(`/search/${keyword}`)
+            //history.push(`/search/${keyword}`, state => state.products);
         } else {
             history.push('/');
         }

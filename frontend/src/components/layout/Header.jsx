@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Route, Routes, Router } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import '../../App.css'
 import Search from './Search'
@@ -25,6 +25,8 @@ const Header = () => {
 
                 <div className="col-12 col-md-6 mt-2 mt-md-0">
                     <Search history={history} />
+
+                    {/* TODO */}
                     {/* <Routes>
                         <Route render={(history) => <Search history={history} />} />
                     </Routes> */}
@@ -38,7 +40,7 @@ const Header = () => {
                     </Link>
                     {user ? (
                         <div className="ml-4 dropdown d-inline">
-                            <Link to="#!" className='btn dropdown-toggle text-white'
+                            <Link to="#!" className='btn dropdown-toggle text-white mr-4'
                                 type="button" id="dropDownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <figure className="avatar avatar-nav">
